@@ -1,3 +1,4 @@
+set nocompatible
 set autoindent
 filetype plugin indent on
 syntax on
@@ -41,7 +42,8 @@ map <leader>ev :e ~/.vimrc<CR>
 "remove trailing spaces when save
 autocmd BufWritePre * :%s/\s\+$//e
 
-nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+"change for using Esc may be causing arrow key problems
+nnoremap <silent> ,, :nohlsearch<Bar>:echo<CR>
 
 nmap <C-J> <C-W><C-J>
 nmap <C-K> <C-W><C-K>
@@ -50,11 +52,17 @@ nmap <C-L> <C-W><C-L>
 
 nmap <leader>e :MRU<CR>
 nmap <leader>w :bd<CR>
-nmap ;w :w<CR>
+"nmap ;w :w<CR>
 
+"let g:php_cs_fixer_rules = "@PSR2 --using-cache=false"
+"let g:php_cs_fixer_rules = "@PSR2"
 nnoremap <silent><leader>f :call PhpCsFixerFixFile()<CR>
 
 nnoremap <Leader>q :Bdelete<CR>
+
+nnoremap - :exe 'Lexplore' expand('%:h')<CR>
+let g:netrw_winsize=25
+let g:netrw_liststyle=3
 
 let $FZF_DEFAULT_COMMAND = 'ag --skip-vcs-ignores -g ""'
 
@@ -62,7 +70,7 @@ let g:fzf_filemru_bufwrite = 1
 let g:fzf_filemru_git_ls = 1
 let g:fzf_filemru_ignore_submodule = 1
 
-imap jj <Esc>
+" imap jj <Esc>
 
 "Syntastic recommended default settings.
 set statusline+=%#warningmsg#
@@ -123,8 +131,6 @@ else
   let &t_EI = "\<esc>[1 q"  " default cursor (usually blinking block) otherwise
 endif
 
-"let g:php_cs_fixer_rules = "@PSR2"
-
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'itchyny/lightline.vim'
@@ -136,8 +142,11 @@ Plug 'vim-syntastic/syntastic'
 Plug 'arnaud-lb/vim-php-namespace'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+" Plug 'tpope/vim-surround'
+Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-commentary'
 Plug 'moll/vim-bbye'
+"Plug 'ludovicchabant/vim-gutentags'
 "Plug 'mhinz/vim-signify'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
