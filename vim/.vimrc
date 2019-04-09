@@ -41,7 +41,7 @@ set hlsearch
 set showmatch
 set complete=.,w,b,u
 set belloff=all
-set rtp+=~/.fzf/bin/fzf
+set rtp+=~/.fzf/bin/fzf,/usr/bin/fzf
 " set noerrorbells
 " set visualbell
 " set t_vb=
