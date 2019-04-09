@@ -41,6 +41,7 @@ set hlsearch
 set showmatch
 set complete=.,w,b,u
 set belloff=all
+set rtp+=~/.fzf/bin/fzf
 " set noerrorbells
 " set visualbell
 " set t_vb=
@@ -106,7 +107,7 @@ let NERDTreeHijackNetrw = 0
 " nmap <d-1> :NERDTreeToggle<cr>
 nmap <F2> :NERDTreeToggle<CR>
 
-let $FZF_DEFAULT_COMMAND = 'ag --skip-vcs-ignores -g ""'
+" let $FZF_DEFAULT_COMMAND = 'ag --skip-vcs-ignores -g ""'
 
 let g:fzf_filemru_bufwrite = 1
 let g:fzf_filemru_git_ls = 1
