@@ -21,7 +21,7 @@ set number
 let mapleader = ","
 set laststatus=2
 set hidden
-set nowrap
+set wrap
 set nobackup
 set tabstop=4
 set expandtab
@@ -49,8 +49,9 @@ set foldcolumn=2
 highlight VertSplit guifg=bg guibg=bg
 hi NonText guifg=bg
 set directory=$HOME/.vim/swapfiles//
+set tags+=.git/tags
 
-""""""""""""""""""""""
+"""""""""""""""""""""
 "      Mappings      "
 """"""""""""""""""""""
 
@@ -86,12 +87,12 @@ nmap <C-H> <C-W><C-H>
 nmap <C-L> <C-W><C-L>
 
 nmap <leader>e :MRU<CR>
-nmap <leader>w :bd<CR>
+" nmap <leader>w :bd<CR>
 "nmap ;w :w<CR>
+nmap <leader>w :w<CR>
 
 "let g:php_cs_fixer_rules = "@PSR2 --using-cache=false"
-"let g:php_cs_fixer_rules = "@PSR2"
-let g:php_cs_fixer_config_file = '.php_cs'
+" let g:php_cs_fixer_rules = "@PSR2"
 nnoremap <silent><leader>f :call PhpCsFixerFixFile()<CR>
 
 nnoremap <Leader>q :Bdelete<CR>
@@ -180,6 +181,11 @@ else
   let &t_EI = "\<esc>[1 q"  " default cursor (usually blinking block) otherwise
 endif
 
+" wrap format
+set linebreak showbreak=↪\  breakindent breakindentopt=shift:-2
+set formatoptions+=nj
+let g:PHP_outdentphpescape = 0
+
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'itchyny/lightline.vim'
@@ -203,6 +209,7 @@ Plug 'tpope/vim-commentary'
 Plug 'moll/vim-bbye'
 "Plug 'ludovicchabant/vim-gutentags'
 "Plug 'mhinz/vim-signify'
+Plug 'craigemery/vim-autotag'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -230,4 +237,5 @@ autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
 "!ctags -R --PHP-kinds=cfi --regex-php="/^[ \t]*trait[\t]+([a-z2_9_]+)/\1/t,traits/i" --exclude=node_modules --exclude=vendor
 
 au BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &
-" autocmd VimEnter * redraw!
+
+autocmd VimEnter * redraw!

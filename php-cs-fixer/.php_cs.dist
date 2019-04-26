@@ -1,0 +1,14 @@
+<?php
+
+return PhpCsFixer\Config::create()
+    ->setUsingCache(false)
+    ->setRules([
+    '@Symfony' => true,
+    '@PSR2' => true,
+    'ordered_imports' => [
+        'sortAlgorithm' => 'length',
+    ],
+    'array_syntax'  => ['syntax' => 'short'],
+    ])
+;
+

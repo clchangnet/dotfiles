@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+PATH="/usr/local/bin:$PATH"
+dir="`git rev-parse --git-dir`"
+trap 'rm -f "$dir/$$.tags"' EXIT
+
+#!ctags -r --php-kinds=cfi --regex-php="/^[ \t]*trait[\t]+([a-z2_9_]+)/\1/t,traits/i" --exclude=node_modules --exclude=vendor
+
+ctags --tag-relative=yes -R -f "$dir/$$.tags" --fields=+aimlS --languages=php --PHP-kinds=+cdfi --regex-php="/^[ \t]*trait[\t]+([a-z2_9_]+)/\1/t,traits/i" \
+    --exclude=composer.phar --exclude=*Test.php --exclude=*phpunit* --exclude="\.git" --exclude=node_modules --exclude=vendor
+
+mv "$dir/$$.tags" "$dir/tags"
