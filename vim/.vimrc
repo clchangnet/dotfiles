@@ -120,6 +120,9 @@ let g:fzf_filemru_ignore_submodule = 1
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
+" disable indent for json
+autocmd Filetype json let g:indentLine_enabled = 0
+
 "Syntastic recommended default settings.
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}

@@ -1,0 +1,35 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true,
+        "commonjs": true,
+        "jquery": true
+    },
+    "extends": [
+        "plugin:vue/recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "vue"
+    ],
+    "rules": {
+        "eqeqeq": "warn",
+        "vue/html-self-closing": ["error", {
+          "html": {
+            "void": "never",
+            "normal": "never",
+            "component": "never"
+          },
+          "svg": "always",
+          "math": "always"
+        }]
+    }
+}
