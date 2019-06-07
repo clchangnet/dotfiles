@@ -137,9 +137,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 "let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 let g:syntastic_php_checkers = ['php', 'phpmd']
-" let g:syntastic_python_mri_args = "--errors-only"
-let g:syntastic_python_checkers = ['pylint']
-" let g:syntastic_python_pylint_args = "--errors-only"
 
 " import use
 function! IPhpInsertUse()
@@ -165,11 +162,6 @@ let g:UltiSnipsSnippetDirectories=["ultisnips"]
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-" settings for vim snippets
-let g:snips_author = "Allan Chang"
-let g:snips_email = "allan@clchang.net"
-let g:snips_github = "https://github.com/clchangnet"
 
 "let g:indent_guides_default_mapping = 0
 " let g:indent_guides_auto_colors = 1
