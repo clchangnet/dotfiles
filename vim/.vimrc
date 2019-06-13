@@ -36,6 +36,7 @@ set splitright
 set autoread
 "set timeout ttimeout timeoutlen=200
 set scrolloff=5
+"auto write when switching buffer
 "set autowriteall
 set hlsearch
 set showmatch
@@ -45,11 +46,11 @@ set rtp+=~/.fzf/bin/fzf,/usr/bin/fzf
 " set noerrorbells
 " set visualbell
 " set t_vb=
+set t_RV=
 set foldcolumn=2
 highlight VertSplit guifg=bg guibg=bg
 hi NonText guifg=bg
 set directory=$HOME/.vim/swapfiles//
-set tags+=.git/tags
 
 """""""""""""""""""""
 "      Mappings      "
@@ -91,15 +92,11 @@ nmap <leader>e :MRU<CR>
 "nmap ;w :w<CR>
 nmap <leader>w :w<CR>
 
-"let g:php_cs_fixer_rules = "@PSR2 --using-cache=false"
-" let g:php_cs_fixer_rules = "@PSR2"
-nnoremap <silent><leader>f :call PhpCsFixerFixFile()<CR>
-
 nnoremap <Leader>q :Bdelete<CR>
 
 " netrw
-nnoremap <Leader>n :Lexplore<CR>
-nnoremap - :exe 'Lexplore' expand('%:h')<CR>
+nnoremap <Leader>m :Lexplore<CR>
+" nnoremap - :exe 'Lexplore' expand('%:h')<CR>
 let g:netrw_winsize=25
 let g:netrw_liststyle=3
 
@@ -135,29 +132,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-"let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-let g:syntastic_php_checkers = ['php', 'phpmd']
-" let g:syntastic_python_mri_args = "--errors-only"
 let g:syntastic_python_checkers = ['pylint']
-" let g:syntastic_python_pylint_args = "--errors-only"
-
-" import use
-function! IPhpInsertUse()
-    call PhpInsertUse()
-    call feedkeys('a', 'n')
-endfunction
-autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
-
-" function! IPhpExpandClass()
-"     call PhpExpandClass()
-"     call feedkeys('a', 'n')
-" endfunction
-" autocmd FileType php inoremap <Leader>q <Esc>:call IPhpExpandClass()<CR>
-" autocmd FileType php noremap <Leader>q :call PhpExpandClass()<CR>
-
-let g:php_namespace_sort_after_insert = 1
-let g:php_namespace_sort = "'{,'}-1!awk '{print length, $0}' | sort -n -s | cut -d' ' -f2-"
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsSnippetsDir="~/.vim/ultisnips"
@@ -166,19 +141,12 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
+let g:ycm_autoclose_preview_window_after_completion = 1
+
 " settings for vim snippets
 let g:snips_author = "Allan Chang"
 let g:snips_email = "allan@clchang.net"
 let g:snips_github = "https://github.com/clchangnet"
-
-"let g:indent_guides_default_mapping = 0
-" let g:indent_guides_auto_colors = 1
-" let g:indent_guides_enable_on_vim_startup = 1
-" let g:indent_guides_start_level = 2
-" let g:indent_guides_guide_size = 0
-" let g:indent_guides_exclude_filetypes = ['help', 'startify', 'man', 'rogue']
-
-"let g:netrw_sort_sequence = '[\/]$,*'
 
 let g:lightline = {
 \ 'colorscheme': 'seoul256',
@@ -198,7 +166,6 @@ endif
 " wrap format
 set linebreak showbreak=↪\  breakindent breakindentopt=shift:-2
 set formatoptions+=nj
-let g:PHP_outdentphpescape = 0
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
@@ -206,24 +173,15 @@ Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-Plug 'StanAngeloff/php.vim'
-Plug 'stephpy/vim-php-cs-fixer'
-Plug 'jwalton512/vim-blade'
 Plug 'mattn/emmet-vim'
 Plug 'yegappan/mru'
-Plug 'vim-syntastic/syntastic'
-Plug 'arnaud-lb/vim-php-namespace'
-Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
-"Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install; read'}
-Plug 'davidhalter/jedi-vim'
+" Plug 'vim-syntastic/syntastic'
+Plug 'Valloric/YouCompleteMe'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" Plug 'tpope/vim-surround'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-commentary'
 Plug 'moll/vim-bbye'
-"Plug 'ludovicchabant/vim-gutentags'
-"Plug 'mhinz/vim-signify'
 Plug 'craigemery/vim-autotag'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -241,16 +199,11 @@ augroup reload_vimrc
     autocmd bufwritepost $MYVIMRC nested source $MYVIMRC
 augroup END
 
-" augroup numbertoggle
-"     autocmd!
-"     autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-"     autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-" augroup END
-
-autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
-"autocmd BufWritePost *.php silent!
-"!ctags -R --PHP-kinds=cfi --regex-php="/^[ \t]*trait[\t]+([a-z2_9_]+)/\1/t,traits/i" --exclude=node_modules --exclude=vendor
-
-au BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &
-
-autocmd VimEnter * redraw!
+" autocmd VimEnter * redraw!
+" syntastic with py files writing garbage to screen
+set ttyfast
+au FileWritePost * :redraw!
+au TermResponse * :redraw!
+au TextChanged * :redraw!
+au QuickFixCmdPre * :redraw!
+au QuickFixCmdPost * :redraw!
