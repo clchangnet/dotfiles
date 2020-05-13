@@ -124,24 +124,55 @@ let g:html_indent_style1 = "inc"
 autocmd Filetype json let g:indentLine_enabled = 0
 
 "Syntastic recommended default settings.
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['pylint']
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 0
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_python_checkers = ['pylint', 'pep8']
+" let g:syntastic_python_checkers = ['pep8']
+
+" ale lint
+" let g:ale_linters = {'rust': ['cargo']}
+" let g:ale_completion_enabled = 1
+" let g:ale_linters = {'rust': ['rls']}
+" let b:ale_linters = {'rust': ['rls','cargo','rustc']}
+" let g:ale_fixers = {'rust': ['rustfmt']}
+" let g:ale_completion_enabled = 1
+" let g:ale_rust_rls_toolchain = 'stable'
+" Ale
+highlight ALEErrorSign ctermfg=9
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '⚠'
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
+let g:ale_linters = {
+\   'rust': ['rls', 'cargo']
+\}
+
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_completion_enabled = 1
+
+noremap <Leader>lf :ALEFix<CR>
+
+" YouCompleteMe
+" let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_key_list_previous_completion=['<Up>']
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsSnippetsDir="~/.vim/ultisnips"
 let g:UltiSnipsSnippetDirectories=["ultisnips"]
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsJumpForwardTrigger="<C-j>"
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
 
 " settings for vim snippets
 let g:snips_author = "Allan Chang"
@@ -176,7 +207,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'mattn/emmet-vim'
 Plug 'yegappan/mru'
 " Plug 'vim-syntastic/syntastic'
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'machakann/vim-sandwich'
@@ -187,6 +218,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tweekmonster/fzf-filemru'
+Plug 'rust-lang/rust.vim'
+Plug 'w0rp/ale'
 call plug#end()
 
 "-------------Auto-Commands--------------"
@@ -200,10 +233,3 @@ augroup reload_vimrc
 augroup END
 
 " autocmd VimEnter * redraw!
-" syntastic with py files writing garbage to screen
-set ttyfast
-au FileWritePost * :redraw!
-au TermResponse * :redraw!
-au TextChanged * :redraw!
-au QuickFixCmdPre * :redraw!
-au QuickFixCmdPost * :redraw!

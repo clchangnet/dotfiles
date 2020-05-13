@@ -1,0 +1,4 @@
+call plug#begin('~/.config/nvim/plugged')
+Plug 'fatih/vim-go'
+" Initialize plugin system
+call plug#end()

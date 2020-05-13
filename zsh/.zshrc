@@ -29,7 +29,7 @@ ZSH_THEME="spaceship"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -101,8 +101,10 @@ source $ZSH/oh-my-zsh.sh
 #export PATH=~/webdev/flutter/bin:$PATH
 #export PATH=/usr/lib/dart/bin:$PATH
 #export PATH="$PATH":"$HOME/.pub-cache/bin"
-#export PATH=$PATH:/usr/local/go/bin
-#export GOPATH=~/webdev/go
+export PATH=$PATH:/usr/local/go/bin
+# export GOPATH=~/webdev/go
+export GOPATH=~/golib
+export GOPATH=$GOPATH:~/webdev/go
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 bindkey -v
@@ -110,10 +112,10 @@ bindkey -v
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-eval "$(pyenv virtualenv-init -)"
-export PATH="$HOME/.cargo/bin:$PATH"
+# export PYENV_ROOT="$HOME/.pyenv"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# if command -v pyenv 1>/dev/null 2>&1; then
+#   eval "$(pyenv init -)"
+# fi
+# eval "$(pyenv virtualenv-init -)"
+# export PATH="$HOME/.cargo/bin:$PATH"
