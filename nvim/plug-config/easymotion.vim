@@ -1,1 +1,1 @@
-" press leader leader to activate
+" press leader leader to activate and the key w

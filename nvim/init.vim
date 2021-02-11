@@ -3,4 +3,3 @@ if exists('g:vscode')
 else
     source ~/dotfiles/nvim/init_regular.vim
 endif
-

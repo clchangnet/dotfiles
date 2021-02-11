@@ -12,6 +12,12 @@ set updatetime=300
 set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
+" #d166bc
+" hi! CocErrorSign guifg=#d1666a
+" highlight CocErrorHighlight ctermfg=Red  guifg=#d166bc
+" highlight CocErrorFloat cterm=reverse ctermfg=139 ctermbg=235 gui=reverse guifg=#9b85bb guibg=#202a31
+highlight CocErrorFloat ctermfg=139 guifg=#9b85bb
+" hi! CocErrorFloat ctermfg=139 guifg=#9b85bb
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -57,7 +63,7 @@ nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
