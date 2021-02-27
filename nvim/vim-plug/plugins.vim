@@ -11,20 +11,27 @@ Plug 'nvim-lua/completion-nvim'
 
 " Neovim Tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 Plug 'nvim-treesitter/completion-treesitter'
+Plug 'mhinz/vim-startify'
+
+Plug 'glepnir/galaxyline.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+" Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-tree.lua'
 
 Plug 'junegunn/goyo.vim'
 " Plug 'easymotion/vim-easymotion'
 " Plug 'liuchengxu/vim-which-key'
-Plug 'mhinz/vim-startify'
 " Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'kassio/neoterm'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'qpkorr/vim-bufkill'
 Plug 'rust-lang/rust.vim'
-Plug 'tmsvg/pear-tree'
+" Plug 'tmsvg/pear-tree'
 Plug 'vim-test/vim-test'
+Plug 'mbbill/undotree'
 " Plug 'kristijanhusak/defx-icons'
 " Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'junegunn/fzf', { 'do': './install --all' } | Plug 'junegunn/fzf.vim'
@@ -35,6 +42,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+
+" Cheat Sheet
+Plug 'dbeniamine/cheat.sh-vim'
 
 call plug#end()
 

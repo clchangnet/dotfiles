@@ -3,6 +3,10 @@ let mapleader = "\<Space>"
 map <leader>s :source ~/.config/nvim/init.vim<CR>
 map <leader>ev :e ~/dotfiles/nvim/init_regular.vim<CR>
 
+" command mode
+map ; :
+map q; q:
+
 " splits navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -51,3 +55,8 @@ nnoremap <silent> N N:call HLCurrent()<cr>
 " nmap <space>n :CocCommand explorer --position right<CR>
 
 " netrw mappings in all.vim
+
+" 'cd' towards the directory in which the current file is edited
+" but only change the path for the current window
+nnoremap <leader>cd :lcd %:h<CR>
+

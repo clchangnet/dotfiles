@@ -2,7 +2,7 @@ set iskeyword+=-
 set number
 set splitbelow
 set splitright
-set t_Co=256
+" set t_Co=256
 " This is recommended by coc
 set nobackup
 set nowritebackup
@@ -13,9 +13,19 @@ set nohlsearch
 set scrolloff=8
 
 set noswapfile
-set nobackup
 
+set splitright
+
+" set guifont=SauceCodePro\ Nerd\ Font\ 14
+" set guifont=GoMono\ Nerd\ Font\ Mono\ Book\ 11
+
+" treesitter settings
 set completeopt=menuone,noinsert,noselect
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
 
 set relativenumber
 set nu
